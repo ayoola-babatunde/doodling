@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk
 
 root = Tk()
+root.attributes('-alpha', 0.3)
 
 # outputs mouseclick information
 def mouse_press(event):
@@ -27,7 +28,8 @@ def draw(event):
     prev = event
 
 
-canvas = Canvas(root, width=680, height=480, background='white')
+
+canvas = Canvas(root, width=1920, height=1080, background='white')
 canvas.pack()
 
 canvas.bind('<ButtonPress>', mouse_press)
