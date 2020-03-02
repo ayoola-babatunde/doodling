@@ -2,6 +2,6 @@
 A simple drawing program.
 
 
-Modified to be more useful for own purpose by adding pen colours, and a clear screen button. 
+Modified by adding pen colours, a clear screen button, and an opacity option. 
 
-Still in progress. 
+In progress: trying to reduce duplication using classes. 
