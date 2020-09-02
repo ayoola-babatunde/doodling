@@ -2,11 +2,12 @@
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import colorchooser 
 
-#options
-opacity = 0.9
-canvas_height = 500
-canvas_width = 500
+#options to adjust
+opacity = 0.7
+canvas_height = 600
+canvas_width = 1500
 
 root = Tk()
 root.attributes('-alpha', opacity)
@@ -62,19 +63,30 @@ def draw(event, colour = 'black', line_width = 4):
 #change pen colour
 def pen(real_col, l_width = 4):
     canvas.bind('<B1-Motion>', lambda event, x = real_col: draw(event, colour = x, line_width = l_width))
+    
+#set a random color by picking    
+def color1():
+    color = colorchooser.askcolor()[1]
+    return color
 
-
+#slider for pen size
+w1 = Scale(root, from_ = 1, to = 25, orient = HORIZONTAL, label = 'Pen Size')
+w1.set(10)
+w1.pack(in_ = top, side = RIGHT)
 
 #initializing buttons
-blackpenbutton = Button(root, text = u'\u270E', command = lambda x = 'black': pen(real_col = x), bg = 'black', fg = 'white')
-redpenbutton = Button(root, text = u'\u270E', command = lambda x = 'red': pen(real_col = x), bg = 'red')
-orangepenbutton = Button(root, text = u'\u270E', command = lambda x = 'orange': pen(real_col = x), bg = 'orange')
-yellowpenbutton = Button(root, text = u'\u270E', command = lambda x = 'yellow': pen(real_col = x), bg = 'yellow')
-greenpenbutton = Button(root, text = u'\u270E', command = lambda x = 'green': pen(real_col = x), bg = 'green')
-bluepenbutton = Button(root, text = u'\u270E', command = lambda x = 'blue': pen(real_col = x), bg = 'blue')
-indigopenbutton = Button(root, text = u'\u270E', command = lambda x = 'indigo': pen(real_col = x), bg = 'indigo')
-brownpenbutton = Button(root, text = u'\u270E', command = lambda x = 'brown': pen(real_col = x), bg = 'brown')
-whitepenbutton = Button(root, text = u'\u270E', command = lambda x = 'white': pen(real_col = x, l_width = 10), bg = 'white')
+blackpenbutton = Button(root, text = u'\u270E', command = lambda x = 'black': pen(real_col = x, l_width = w1.get()), bg = 'black', fg = 'white')
+redpenbutton = Button(root, text = u'\u270E', command = lambda x = 'red': pen(real_col = x, l_width = w1.get()), bg = 'red')
+orangepenbutton = Button(root, text = u'\u270E', command = lambda x = 'orange': pen(real_col = x, l_width = w1.get()), bg = 'orange')
+yellowpenbutton = Button(root, text = u'\u270E', command = lambda x = 'yellow': pen(real_col = x, l_width = w1.get()), bg = 'yellow')
+greenpenbutton = Button(root, text = u'\u270E', command = lambda x = 'green': pen(real_col = x, l_width = w1.get()), bg = 'green')
+bluepenbutton = Button(root, text = u'\u270E', command = lambda x = 'blue': pen(real_col = x, l_width = w1.get()), bg = 'blue')
+indigopenbutton = Button(root, text = u'\u270E', command = lambda x = 'indigo': pen(real_col = x, l_width = w1.get()), bg = 'indigo')
+#choose_a_color = colorchooser.askcolor()[1]
+#chosen_color = choose_a_color[1]    #to pick up the color name in HTML notation, i.e. the 2nd element of the tuple returned by the colorchooser
+
+brownpenbutton = Button(root, text = u'\u270E', command = lambda x = 'brown': pen(real_col = x, l_width = w1.get()), bg = 'brown')
+whitepenbutton = Button(root, text = u'\u270E', command = lambda x = 'white': pen(real_col = x, l_width = w1.get()), bg = 'white')
 
 #adding buttons to canvas
 blackpenbutton.pack(in_ = top, side = LEFT)
